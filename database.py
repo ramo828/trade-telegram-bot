@@ -132,3 +132,10 @@ __________________________________
             """
             self.cursor.execute(query)
             self.sql.commit()
+    
+    def remove_admin(self, user_id):
+            query = f"""
+            DELETE FROM admins WHERE user_id='{str(user_id)}'
+            """
+            self.cursor.execute(query)
+            self.sql.commit()

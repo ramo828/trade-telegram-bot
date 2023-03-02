@@ -69,11 +69,20 @@ class Commands:
                         self.db.add_admin(self.all_command[2])
                     else:
                         self.bot.sendMessage(self.chat_id,"Bu komutu sadece adminler çalışdıra bilir!")
+                elif(command_two == "remove"):
+                    if(self.admin):
+                        self.bot.sendMessage(self.chat_id,"Adminlikden  alındı!")
+                        self.db.remove_admin(self.all_command[2])
+                    else:
+                        self.bot.sendMessage(self.chat_id,"Bu komutu sadece adminler çalışdıra bilir!")
                 elif(command_two == "all"):
                     if(self.admin):
-                        # self.bot.sendMessage(self.chat_id,"Tüm limitler sıfırlandı!")
-                        # self.db.reset_all()
-                        pass
+                        data = ""
+                        adm = self.db.admins()
+                        for admin in adm:
+                            data+=self.db.info(admin[0])
+                        self.bot.sendMessage(self.chat_id,data)
+                                                   
                     else:
                         self.bot.sendMessage(self.chat_id,"Bu komutu sadece adminler çalışdıra bilir!")
 
